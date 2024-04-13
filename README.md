@@ -10,6 +10,8 @@
 
     5. Logs comprehensive API access information, ensuring traceability and monitoring.
 
+## Note's App Frontend Repo [click to view](https://github.com/rishi058/-Vite-React-Notes-App)
+
 ## Table of Contents
 
 - [Setup project on your local machine](#Setup)
