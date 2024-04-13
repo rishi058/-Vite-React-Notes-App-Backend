@@ -10,11 +10,20 @@
 
     5. Logs comprehensive API access information, ensuring traceability and monitoring.
 
-## Note's App Frontend Repo [click to view](https://github.com/rishi058/-Vite-React-Notes-App)
+<br/>
+
+### Note's App Frontend Repo [click to view](https://github.com/rishi058/-Vite-React-Notes-App)
+
+<br/>
+
+### This project is currently hosted on render.
+### Hosted Link :- [https://vite-react-notes-app-backend.onrender.com]. Use this baseURL to test the api.
+
+<br/>
 
 ## Table of Contents
 
-- [Setup project on your local machine](#Setup)
+- [Setup project on your local machine](#Setup-project-on-your-local-machine)
 - [Endpoints](#Endpoints)
 - [Logger](#Logger)
 
