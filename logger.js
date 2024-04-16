@@ -1,7 +1,7 @@
-const chalk = require("chalk");
-const morgan = require('morgan');
+import chalk from 'chalk';
+import morgan from 'morgan';
 
-function customLogger() {
+export function customLogger() {
   return (req, res, next) => {
 
     let resBody;
@@ -44,5 +44,3 @@ function customLogger() {
     loggerMiddleware(req, res, next);
   };
 }
-
-module.exports = customLogger;

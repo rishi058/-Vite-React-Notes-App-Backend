@@ -1,15 +1,10 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import { getNotes, addNote, updateNote, deleteNote } from '../controllers/notes.controller.js';
+
 const userRouter = express.Router();
 
 const secretKey = "NotesApp4242";
-
-const {
-    getNotes,
-    UpdateNote,
-    deleteNote,
-    addNote
-} = require('../../controllers/notes_manipulation/notes.controller');
 
 const authMiddleware = (req, res, next) => {
     // Extract the token from the Authorization header
@@ -33,11 +28,11 @@ const authMiddleware = (req, res, next) => {
 
 userRouter.use(authMiddleware);
 
-userRouter.get('/get_notes', getNotes);
-userRouter.post('/add_note', addNote);
-userRouter.post('/update_note', UpdateNote);
-userRouter.delete('/delete_note', deleteNote);
+userRouter.get('/notes', getNotes);
+userRouter.post('/notes', addNote);
+userRouter.put('/notes', updateNote);
+userRouter.delete('/notes', deleteNote);
 
-module.exports = userRouter;
+export default userRouter;
 
 

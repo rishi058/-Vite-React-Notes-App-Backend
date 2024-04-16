@@ -1,10 +1,10 @@
-const User = require('../../models/user.model');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { User } from '../models/user.model.js';
 
 const secretKey = "NotesApp4242"
 
-const register = async (req, res) => {
+export const register = async (req, res) => {
     try{
         
         const { name, email, password } = req.body;
@@ -44,7 +44,7 @@ const register = async (req, res) => {
 }
 
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -66,10 +66,4 @@ const login = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
-
-
-module.exports = {
-    register,
-    login
 };

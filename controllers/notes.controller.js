@@ -1,7 +1,7 @@
-const Note = require("../../models/notes.model");
-const User = require("../../models/user.model");
+import { Note } from "../models/notes.model.js";
+import { User } from "../models/user.model.js";
 
-const getNotes = async (req, res) => {
+export const getNotes = async (req, res) => {
     try{
         const userId = req.userId;
         const user = await User.findById(userId);
@@ -19,7 +19,7 @@ const getNotes = async (req, res) => {
 
 };
 
-const UpdateNote = async (req, res) => {
+export const updateNote = async (req, res) => {
     try{
         const {_id, title, content} = req.body;
 
@@ -41,15 +41,17 @@ const UpdateNote = async (req, res) => {
     }
 };
 
-const deleteNote = async(req, res) => {
+export const deleteNote = async(req, res) => {
     try{
-        const { _id } = req.body;
+        const { id } = req.query;
 
-        if (!_id) {
+        console.log(id);
+
+        if (!id) {
             res.status(400).json({ message: "Note ID is required" });
         }
         else{
-            const deletedNote = await Note.findByIdAndDelete(_id);
+            const deletedNote = await Note.findByIdAndDelete(id);
 
             if (!deletedNote) {
                 res.status(404).json({ message: "Note not found" });
@@ -63,7 +65,7 @@ const deleteNote = async(req, res) => {
     }
 };
 
-const addNote = async(req, res) => {
+export const addNote = async(req, res) => {
     try{
         const userId = req.userId;
         const note = await Note.create(req.body);
@@ -81,11 +83,4 @@ const addNote = async(req, res) => {
     } catch (e) {
         res.status(500).json({ message: e.message });
     }
-};
-
-module.exports = {
-    getNotes,
-    UpdateNote,
-    deleteNote,
-    addNote
 };
