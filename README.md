@@ -10,9 +10,20 @@
 
     5. Logs comprehensive API access information, ensuring traceability and monitoring.
 
+<br/>
+
+### Note's App Frontend Repo [click to view](https://github.com/rishi058/-Vite-React-Notes-App)
+
+<br/>
+
+### This project is currently hosted on render.
+### Hosted Link :- [https://vite-react-notes-app-backend.onrender.com]. Use this baseURL to test the api.
+
+<br/>
+
 ## Table of Contents
 
-- [Setup project on your local machine](#Setup)
+- [Setup project on your local machine](#Setup-project-on-your-local-machine)
 - [Endpoints](#Endpoints)
 - [Logger](#Logger)
 
@@ -30,7 +41,7 @@
 
 ## Endpoints
 
-1.  [  ...../auth/login  ] ____________ { POST }
+1.  [  /api/login  ] ____________ { POST }
 
         Request-Body : {
             "email" : "dummy@gmail.com",
@@ -44,7 +55,7 @@
         
         Error Response : {"message" : "Error Message"}
 
-2.  [  ...../auth/register  ] ____________ { POST }
+2.  [  /api/register  ] ____________ { POST }
 
         Request-Body : {
             "name" : "Dummy",
@@ -66,7 +77,7 @@
 
 <br/>
 
-3.  [  ...../user/get_notes  ] ____________ { GET }
+3.  [  /api/notes  ] ____________ { GET }
 
         Success Response :
         {
@@ -86,7 +97,7 @@
 
         Error Response : {"message" : "Error Message"}
 
-4.  [  ...../user/add_note  ] ____________ { POST }
+4.  [  /api/notes  ] ____________ { POST }
 
         Request-Body : {
             "title" : "This is a title",
@@ -108,7 +119,7 @@
         
         Error Response : {"message" : "Error Message"}
 
-4.  [  ...../user/update_note  ] ____________ { POST }
+4.  [  /api/notes  ] ____________ { PUT }
 
         Request-Body : {
             "_id" : "6619229666eafd5b83ba528e",
@@ -120,11 +131,7 @@
         
         Error Response : {"message" : "Error Message"}
 
-5.  [  ...../user/delete  ] ____________ { DELETE }
-
-        Request-Body : {
-            "_id" : "6619229666eafd5b83ba528e",
-        }
+5.  [  /api/notes?id='notesId'  ] ____________ { DELETE }
         
         Success Response : {"message": "Note Deleted successfully"}
         
