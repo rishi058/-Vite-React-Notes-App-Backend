@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@freeloop/tailwindcss-backgrounds": "^0.1.3",
-    "@tsparticles/slim": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.3.0",
     "axios": "^1.6.8",
+    "notes-app-backend": "file:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",

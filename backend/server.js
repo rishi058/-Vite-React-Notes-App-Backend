@@ -1,5 +1,6 @@
 import express from "express"; // ES6 syntax
 import mongoose from "mongoose";
+import path from "path";
 import {customLogger} from "./logger.js";
 import cors from "cors";
 
@@ -20,6 +21,19 @@ app.use("/api", authRouter);
 app.use("/api", userRouter);
 
 const port = process.env.PORT || 3000;
+
+//-------------- Settings to run FE+BE on same port ------------------
+
+const __myDir = path.resolve();
+
+app.use(express.static(path.join(__myDir, "frontend/dist")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__myDir, "frontend", "dist", "index.html"));
+});
+
+//-------------------------------------------------------------------
+
 
 mongoose
   .connect(mongoUrl)

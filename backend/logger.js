@@ -16,6 +16,8 @@ export function customLogger() {
     });
 
     const loggerMiddleware = morgan(function (tokens, req, res) {
+      if(tokens==undefined){return null;}
+
       const status = tokens.status(req, res);
       const method = tokens.method(req, res);
       const endpoint = tokens.url(req, res);
@@ -38,7 +40,6 @@ export function customLogger() {
       else{
         console.log(chalk.magenta.bold(` ${datetime} | `) + chalk.bgMagenta.bold(` ${status} `) + chalk.magenta.bold(` | ${method} | URL : ${endpoint} | ${resTime} ms | Req-Body : ${reqBody} | Res-Body : ${resBody}`));
       }
-      next();
     });
 
     loggerMiddleware(req, res, next);
