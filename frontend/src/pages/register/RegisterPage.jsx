@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Auth from "../../services/auth_api";
+import ReactLoading from "react-loading";
 
 function RegisterPage() {
   const [name, setName] = useState("");
@@ -12,14 +13,19 @@ function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [goto, setGoto] = useState(false);
   const [gotoLogin, setGotoLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const success = await new Auth().register(name, email, password);
     if (success) {
       setGoto(true);
     }
+    setLoading(false);
   };
+
+  //---------------------------------------------------------
 
   if (goto) {
     return <Navigate to="/" replace={true} />;
@@ -27,6 +33,8 @@ function RegisterPage() {
   if(gotoLogin){
     return <Navigate to="/login" replace={true} />;
   }
+
+  //---------------------------------------------------------
 
   return (
     <div className="min-h-screen items-center justify-center flex flex-col mx-2">
@@ -104,12 +112,23 @@ function RegisterPage() {
             </button>
           </div>
           <div>
-            <button
-              type="submit"
-              className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-slate-600/70 hover:bg-slate-600"
-            >
-              Submit
-            </button>
+          {loading ? (
+              <div className="flex justify-center items-center">
+                <ReactLoading
+                type="spin"
+                color="#ffffff"
+                height={30}
+                width={30}
+              />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-slate-600/70 hover:bg-slate-600"
+              >
+                Submit
+              </button>
+            )}
           </div>
         </form>
         <div className="mt-4 text-sm">

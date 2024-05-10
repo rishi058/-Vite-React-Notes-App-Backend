@@ -4,7 +4,7 @@ import { showErrorToast, showToast } from "../components/toast";
 class Api {
     Api;
     // baseURL = "http://localhost:3000";
-    baseURL = "https://vite-react-notes-app-backend.onrender.com";
+    baseURL = "https://vite-react-notes-app-backend-y40c.onrender.com";
 
     constructor() {
         this.Api = axios.create({

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import Auth from "../../services/auth_api";
+import ReactLoading from "react-loading";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -9,21 +10,28 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [goto, setGoto] = useState(false);
   const [gotoRegister, setGotoRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const success = await new Auth().login(email, password);
     if (success) {
       setGoto(true);
     }
+    setLoading(false);
   };
+
+  //---------------------------------------------------------
 
   if (goto) {
     return <Navigate to="/" replace={true} />;
   }
-  if(gotoRegister){
+  if (gotoRegister) {
     return <Navigate to="/register" replace={true} />;
   }
+
+  //---------------------------------------------------------
 
   return (
     <div className="min-h-screen items-center justify-center flex flex-col mx-2">
@@ -82,17 +90,28 @@ function LoginPage() {
             </button>
           </div>
           <div>
-            <button
-              type="submit"
-              className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-slate-600/70 hover:bg-slate-600"
-            >
-              Submit
-            </button>
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <ReactLoading
+                type="spin"
+                color="#ffffff"
+                height={30}
+                width={30}
+              />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-slate-600/70 hover:bg-slate-600"
+              >
+                Submit
+              </button>
+            )}
           </div>
         </form>
         <div className="mt-4 text-sm">
           <div className="flex">
-            Doesn't have an account?{" "}
+            Doesn&apos;t have an account?{" "}
             <div
               onClick={() => setGotoRegister(true)}
               className="font-bold text-black/50 hover:text-black/100 ml-2"
